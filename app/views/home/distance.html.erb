@@ -1,0 +1,27 @@
+<h2> calculate distance </h2>
+
+<%= form_tag home_distance_path, method: :get do %>
+   
+   <label> Origin </label> <br/>
+   <%= text_field_tag :origin %><br/>
+
+   <label> Destination </label> <br/>
+   <%= text_field_tag :destination %><br/>
+ 
+   <%= submit_tag "Search" %>
+
+<% end %>
+
+
+<% if !@result.nil? %>
+    
+    <br/><br/>
+    <b>Origin : <%= @result["origin_addresses"].join(", ") %> </b><br/>
+
+    <b>Destination : <%= @result["destination_addresses"].join(", ") %> </b><br/>
+
+    <b>Distance : <%= @result["rows"][0]["elements"][0]["distance"]["text"] %> </b><br/>
+
+    <b>Travel time : <%= @result["rows"][0]["elements"][0]["duration"]["text"] %> </b><br/>
+
+<% end %>

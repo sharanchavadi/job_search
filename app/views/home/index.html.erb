@@ -1,0 +1,41 @@
+<h2> Find your dream job </h2>
+
+<%= form_tag home_index_path, method: :get do %>
+   
+   <label> Technology </label> <br/>
+   <%= text_field_tag :technology %><br/>
+
+   <label> Location </label> <br/>
+   <%= text_field_tag :location %><br/>
+ 
+   <%= submit_tag "Search" %>
+
+<% end %>
+
+
+<% if !@result.nil? %>
+
+  <h2> We found <%= @result["totalResults"] %> jobs for you </h2>
+  <table border='1'>
+        <thead>
+               <tr>
+                  <th>Title</th>
+                  <th>Company</th>
+                  <th> Description</th>
+                </tr>
+        </thead>
+               <% @result["results"].each do |job| %>
+
+                <tr>
+                    <td> <%= job["jobtitle"] %> </td>
+                    <td> <%= job["Company"] %> </td>
+                    <td> <%= job["snippet"] %> </td>
+                </tr>
+                <% end %>
+        <tbody>
+        </tbody>
+  </table>
+<% end %>
+
+
+
